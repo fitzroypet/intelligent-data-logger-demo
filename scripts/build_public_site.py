@@ -4,8 +4,8 @@ import csv, hashlib, json, shutil, argparse, re
 ROOT=Path(__file__).resolve().parents[1]
 ASSETS=ROOT/'src/interface/static/explorer'
 DEMO=ROOT/'reports/runs/20260921T055826825005Z'
-EVAL=ROOT/'reports/research/20260923T190318100907Z_evaluation'
-LIVE='20260928T072939445717Z_live_development'
+EVAL=ROOT/'reports/research/offline-evaluation'
+LIVE='live-pilot'
 def read(path):return json.loads(path.read_text(encoding='utf-8'))
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def validate_demo():
@@ -30,7 +30,7 @@ def generate_data():
     if (live/'summary.json').exists():
         records=[json.loads(line) for line in (live/'conversations.jsonl').read_text(encoding='utf-8').splitlines()]
         data['live']={'run':LIVE,'summary':read(live/'summary.json'),'model':read(live/'manifest.json')['protocol']['live']['model'],
-            'format_sensitivity':read(ROOT/'reports/research/20260928_live_format_sensitivity/summary.json'),
+            'format_sensitivity':read(ROOT/'reports/research/live-pilot-format-sensitivity/summary.json'),
             'records':[{key:r.get(key) for key in ['case_id','episode','condition','status','question','final_text','scores','elapsed_seconds']} for r in records]}
     (ASSETS/'data/research.json').write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     telemetry=ROOT/'data/processed/telemetry.csv'

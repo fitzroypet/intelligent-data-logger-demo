@@ -28,12 +28,12 @@ Anthropic workspace header. A new pilot completed on 28 September; see below.
 
 ## Live development pilot — 28 September 2026
 
-[Primary archive](reports/research/20260928T072939445717Z_live_development/REPORT.md):
+[Primary archive](reports/research/live-pilot/REPORT.md):
 24/24 conversations completed; intended tool selection 24/24; strict JSON acceptance
 0/24. All final replies were fenced Markdown. Estimated token cost: USD 0.213009.
 The original structured downstream checks consequently received no credit.
 
-[Exploratory format sensitivity](reports/research/20260928_live_format_sensitivity/REPORT.md)
+[Exploratory format sensitivity](reports/research/live-pilot-format-sensitivity/REPORT.md)
 removed one enclosing fence: JSON 24/24, receipt-label agreement 24/24, citation-name
 validity 15/24, oracle agreement 16/24 (includes required abstentions). One development
 seed and one model pass do not establish live generalization. Qualitative review

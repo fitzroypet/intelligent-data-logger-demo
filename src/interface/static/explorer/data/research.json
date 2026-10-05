@@ -1,5 +1,5 @@
 {
-  "run": "20260923T190318100907Z_evaluation",
+  "run": "offline-evaluation",
   "installations": 24,
   "episodes": 288,
   "predictions": 3456,
@@ -267,7 +267,7 @@
     "predictions.csv": "dddca6f2b767abdd46350ceca0bc09b7c93d9ee639cc0b07532a74dd2dbeaebb"
   },
   "live": {
-    "run": "20260928T072939445717Z_live_development",
+    "run": "live-pilot",
     "summary": {
       "attempted_conversations": 24,
       "planned_conversations": 24,
@@ -287,7 +287,7 @@
     "model": "claude-sonnet-4-5-20250929",
     "format_sensitivity": {
       "analysis": "post-hoc outer Markdown fence removal only; original primary scores unchanged",
-      "source_run": "20260928T072939445717Z_live_development",
+      "source_run": "live-pilot",
       "denominator": 24,
       "counts": {
         "outer_fence_removed": 24,
@@ -323,7 +323,7 @@
       "source_sha256": {
         "conversations.jsonl": "6fc584e85f3186b77ec8c22686ed8a529139758a5f320387017614dd02dbcd93"
       },
-      "script_sha256": "d51f8d7159fc9ec7509d66ff148ffd4e7a08c17bac19173d10b7a05eab877799"
+      "script_sha256": "1b7229fc76a91559f78269c45e37f3ef4c4db70e4abab83e0235eb8ffdd959fc"
     },
     "records": [
       {

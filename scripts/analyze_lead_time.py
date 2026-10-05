@@ -9,7 +9,7 @@ if local.exists(): sys.path.insert(0, str(local))
 import pandas as pd
 from src.research.lead_time import rolling_checks, summarize, periodic_visit_summary, CONTROLS, DECLINE
 
-OUT = ROOT/"reports/research/20261005_lead_time"
+OUT = ROOT/"reports/research/detection-delay"
 CONDITIONS = ["full_cross", "full_inverter"]       # recent_* never reach the 14-day history requirement
 
 
@@ -20,7 +20,7 @@ def main():
     checks = rolling_checks(protocol)
     checks.to_csv(OUT/"rolling_checks.csv.gz", index=False, compression="gzip")
     # the final-day check must reproduce the archived one-shot benchmark exactly
-    archive = next((ROOT/"reports/research").glob("*_evaluation"))
+    archive = ROOT/"reports/research/offline-evaluation"
     archived = pd.read_csv(archive/"predictions.csv")
     archived = archived[archived.episode.isin((DECLINE,) + CONTROLS)]
     final = checks[checks.day == days].merge(archived, on=["seed", "episode", "stress", "condition"])

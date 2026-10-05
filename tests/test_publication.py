@@ -26,9 +26,9 @@ def test_static_build_contains_only_reviewed_files(tmp_path):
     assert 'href="/"' not in (tmp_path/'index.html').read_text(encoding='utf-8')
 
 def test_primary_and_exploratory_live_scores_are_separate():
-    source=ROOT/'reports/research/20260928T072939445717Z_live_development'
+    source=ROOT/'reports/research/live-pilot'
     primary=json.loads((source/'summary.json').read_text())
-    secondary=json.loads((ROOT/'reports/research/20260928_live_format_sensitivity/summary.json').read_text())
+    secondary=json.loads((ROOT/'reports/research/live-pilot-format-sensitivity/summary.json').read_text())
     assert primary['completed']==24 and primary['counts']['valid_json']==0
     assert secondary['counts']['valid_json']==24
     assert secondary['source_sha256']['conversations.jsonl']==site.sha(source/'conversations.jsonl')

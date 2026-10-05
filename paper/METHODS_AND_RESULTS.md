@@ -140,9 +140,9 @@ cross policy thresholds in either direction. All conditions abstained on all 48
 deliberately ambiguous/unavailable cases per stress level. That result covers two
 authored abstention mechanisms and is not a general safety or calibration guarantee.
 
-![Clean-data diagnostic accuracy](../reports/research/20260923T190318100907Z_evaluation/accuracy.png)
+![Clean-data diagnostic accuracy](../reports/research/offline-evaluation/accuracy.png)
 
-![Observation-stress sensitivity](../reports/research/20260923T190318100907Z_evaluation/robustness.png)
+![Observation-stress sensitivity](../reports/research/offline-evaluation/robustness.png)
 
 ## Live conversational evaluation status
 
@@ -186,7 +186,7 @@ policies and blinded installer assessment. A physical logger is future work.
 ## Reproducibility
 
 Protocol: [RESEARCH_PROTOCOL.md](../docs/RESEARCH_PROTOCOL.md).
-Authoritative run: [evaluation report](../reports/research/20260923T190318100907Z_evaluation/REPORT.md).
+Authoritative run: [evaluation report](../reports/research/offline-evaluation/REPORT.md).
 Sources, configuration, versions, seeds and hashes were archived before evaluation.
 The thresholds were not changed after reviewing the development outcomes. Run
 `python scripts/run_research_benchmark.py --split evaluation` to create a fresh archive.

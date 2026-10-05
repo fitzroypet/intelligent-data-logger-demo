@@ -1,0 +1,40 @@
+{
+  "analysis": "post-hoc outer Markdown fence removal only; original primary scores unchanged",
+  "source_run": "live-pilot",
+  "denominator": 24,
+  "counts": {
+    "outer_fence_removed": 24,
+    "valid_json": 24,
+    "label_fidelity": 24,
+    "oracle_correct": 16,
+    "citation_validity": 15,
+    "nonempty_explanation": 24
+  },
+  "by_condition": {
+    "full_cross": {
+      "outer_fence_removed": 12,
+      "valid_json": 12,
+      "label_fidelity": 12,
+      "oracle_correct": 12,
+      "citation_validity": 10,
+      "nonempty_explanation": 12
+    },
+    "recent_inverter": {
+      "outer_fence_removed": 12,
+      "valid_json": 12,
+      "label_fidelity": 12,
+      "oracle_correct": 4,
+      "citation_validity": 5,
+      "nonempty_explanation": 12
+    }
+  },
+  "latency_seconds": {
+    "median": 6.263,
+    "min": 4.184,
+    "max": 37.639
+  },
+  "source_sha256": {
+    "conversations.jsonl": "6fc584e85f3186b77ec8c22686ed8a529139758a5f320387017614dd02dbcd93"
+  },
+  "script_sha256": "1b7229fc76a91559f78269c45e37f3ef4c4db70e4abab83e0235eb8ffdd959fc"
+}

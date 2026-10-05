@@ -135,13 +135,13 @@ Acute alarm accuracy was 100% for both cross-component conditions: extended hist
 
 The full condition missed five gradual declines, classified one normal day as weather loss and left one normal day unresolved. These seven failures remain included. Inverter-only history sometimes confused weather-related output change with PV decline. A control-day weather-loss response also illustrates a label limitation: natural stochastic weather variation can occur when no weather intervention was injected. An injection-label disagreement therefore does not always imply an incorrect description of observed conditions.
 
-![Figure 2. Clean-data correct diagnostic labels on identifiable cases under four information-access conditions.](../reports/research/20260923T190318100907Z_evaluation/accuracy.png)
+![Figure 2. Clean-data correct diagnostic labels on identifiable cases under four information-access conditions.](../reports/research/offline-evaluation/accuracy.png)
 
 ### 4.2 Observation stress and abstention
 
 Full cross-component accuracy was 97.5% under moderate corruption (95.4–99.2%) and 90.0% under severe corruption (87.1–92.9%). The slight increase under moderate noise is retained: individual threshold crossings can help or harm label agreement. It is not evidence that noise improves diagnosis generally. All conditions abstained on all 48 deliberately ambiguous/unavailable cases per stress level. This covers two authored mechanisms, not general uncertainty calibration or a safety guarantee.
 
-![Figure 3. Accuracy under clean, moderate and severe observation corruption; conditions share each corrupted realization.](../reports/research/20260923T190318100907Z_evaluation/robustness.png)
+![Figure 3. Accuracy under clean, moderate and severe observation corruption; conditions share each corrupted realization.](../reports/research/offline-evaluation/robustness.png)
 
 ### 4.3 Conversational pilot and output-contract failures
 
@@ -178,7 +178,7 @@ This paper presents an implemented methodology for evidence-grounded conversatio
 
 ## Data and code availability
 
-The repository contains the internally frozen protocol, source snapshots, seed lists, manifests, raw predictions, receipts, failure tables and plot exports: https://github.com/Engr-Daniel/intelligent-data-logger-demo. Offline evaluation archive: 20260923T190318100907Z_evaluation. Completed live archive: 20260928T072939445717Z_live_development. The separate post-hoc analysis is 20260928_live_format_sensitivity. Simulated calendar dates are not field-observation dates. A public evidence explorer is available at https://Engr-Daniel.github.io/intelligent-data-logger-demo/; comparative results are at the same address followed by research.html. The public offline dashboard is available at https://engr-daniel.github.io/intelligent-data-logger-demo/dashboard/. Generated static-site provenance identifies the source archives and asset hashes. The field-acquisition proposal was added during manuscript revision after the synthetic evaluation; it is not part of the frozen v1 experimental protocol.
+The repository contains the internally frozen protocol, source snapshots, seed lists, manifests, raw predictions, receipts, failure tables and plot exports: https://github.com/Engr-Daniel/intelligent-data-logger-demo. Offline evaluation archive: offline-evaluation. Completed live archive: live-pilot. The separate post-hoc analysis is live-pilot-format-sensitivity. Simulated calendar dates are not field-observation dates. A public evidence explorer is available at https://Engr-Daniel.github.io/intelligent-data-logger-demo/; comparative results are at the same address followed by research.html. The public offline dashboard is available at https://engr-daniel.github.io/intelligent-data-logger-demo/dashboard/. Generated static-site provenance identifies the source archives and asset hashes. The field-acquisition proposal was added during manuscript revision after the synthetic evaluation; it is not part of the frozen v1 experimental protocol.
 
 ## References
 

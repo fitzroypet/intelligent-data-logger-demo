@@ -31,10 +31,10 @@
   "final_day_checks_matching_archive": 1152,
   "mismatches": 0,
   "recent_conditions_pv_decline_flags": 0,
-  "source_archive": "20260923T190318100907Z_evaluation",
+  "source_archive": "offline-evaluation",
   "source_sha256": {
     "predictions.csv": "dddca6f2b767abdd46350ceca0bc09b7c93d9ee639cc0b07532a74dd2dbeaebb"
   },
-  "script_sha256": "f7c519f7176c15290a03c1e2b83a700414d46a76734190e31165559f27f1eb44",
+  "script_sha256": "4a4d613b635c2155aec271b1d6160ec783ac91f415c8604ee36b8f2929ff12d0",
   "module_sha256": "a8857681085e776e01b77ad1146d04e17a2e1c986b29cdafa0344d8797bff569"
 }

@@ -3,7 +3,7 @@
 - `python -m pytest -q`: **115 passed in 113.95 seconds**. Includes archive-to-explorer
   equality, bounded static build, outage provenance and separation of primary/post-hoc
   live scores. Existing mocked model tests remain mocked, distinct from the paid pilot.
-- `python scripts/verify_research_run.py reports/research/20260923T190318100907Z_evaluation`:
+- `python scripts/verify_research_run.py reports/research/offline-evaluation`:
   288 episodes, 3,456 predictions, physical checks and all hashes verified.
 - Same verifier on development: 96 episodes, 1,152 predictions and all hashes verified.
 - `scripts/check_publication_browser.py` against local port 8503 using installed Edge:

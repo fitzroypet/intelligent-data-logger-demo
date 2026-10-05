@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Verify frozen evaluation
-        run: python scripts/verify_research_run.py reports/research/20260923T190318100907Z_evaluation
+        run: python scripts/verify_research_run.py reports/research/offline-evaluation
       - name: Build reviewed static assets
         run: python scripts/build_public_site.py
       - uses: actions/configure-pages@v5

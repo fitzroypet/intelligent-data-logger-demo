@@ -1,0 +1,5 @@
+condition,stress,visit_every_days,declines_reaching_threshold,mean_declines_flagged,mean_delay_days,mean_installations_with_false_flag,installations
+full_cross,clean,1,20,19.0,4.7894736842105265,0.0,24
+full_cross,clean,7,20,18.857142857142858,7.738930659983291,0.0,24
+full_cross,clean,14,20,17.285714285714285,10.582727652464495,0.0,24
+full_cross,clean,30,20,14.233333333333333,15.940633990765571,0.0,24

@@ -4,7 +4,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.research.lead_time import rolling_checks, first_flag_day, true_crossing_day, summarize, DECLINE
+from src.research.lead_time import (rolling_checks, first_flag_day, true_crossing_day, summarize,
+                                    periodic_visit_summary, DECLINE)
 from src.research.policy import restrict, diagnose
 from src.research.simulation import generate, corrupt
 
@@ -53,3 +54,18 @@ def test_summary_counts_false_flags_per_installation_not_per_check():
     assert result.installations == 2 and result.installations_with_false_flag == 1
     assert result.flagged == 1 and result.median_delay_days == 0
     assert summarize(pd.DataFrame(rows), 60, consecutive=3, bootstrap=10).iloc[0].installations_with_false_flag == 0
+
+
+def test_periodic_visits_are_averaged_over_offsets_and_never_beat_daily_checks():
+    rows = []
+    for seed in (1, 2):
+        for day in range(14, 61):
+            rows.append(dict(seed=seed, episode="trend_decline", stress="clean", condition="full_cross", day=day,
+                             label="pv_decline" if day >= 30 else "normal", true_decline=.1, crossing_day=26.))
+            rows.append(dict(seed=seed, episode="trend_stable", stress="clean", condition="full_cross", day=day,
+                             label="normal", true_decline=.1, crossing_day=np.nan))
+    result = periodic_visit_summary(pd.DataFrame(rows), 60, intervals=(1, 7)).set_index("visit_every_days")
+    assert result.loc[1, "mean_delay_days"] == 4            # first flag day 30, crossing day 26
+    assert result.loc[7, "mean_delay_days"] == 4 + 3        # offsets 0-6 wait 0..6 extra days, mean 3
+    assert result.loc[7, "mean_declines_flagged"] == 2
+    assert (result.mean_installations_with_false_flag == 0).all()

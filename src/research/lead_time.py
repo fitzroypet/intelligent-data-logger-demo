@@ -86,3 +86,35 @@ def summarize(checks, days, consecutive=1, conditions=None, bootstrap=2000, boot
                         single_check_at_end_median_delay=float((days-meta.crossing_day[eligible]).median()),
                         installations_with_false_flag=int(false_any.sum()), installations=int(len(false_any))))
     return pd.DataFrame(out)
+
+
+def periodic_visit_summary(checks, days, intervals=(1, 7, 14, 30), conditions=("full_cross",), stress="clean"):
+    """Same declines and controls, but checked only every `interval` days (e.g. an installer visit).
+
+    Averaged over every possible start offset, so no schedule is favoured. Delay is the mean over declines
+    flagged by that schedule before the end of the record, so sparse schedules that catch fewer declines
+    are not penalised for the ones they miss (read it together with `flagged`).
+    """
+    first_day = int(checks.day.min())
+    out = []
+    for condition in conditions:
+        g = checks[(checks.condition == condition) & (checks.stress == stress)]
+        meta = g[g.episode == DECLINE].drop_duplicates("seed").set_index("seed")
+        eligible = meta.crossing_day.notna()
+        for interval in intervals:
+            delays, flagged, false_any = [], [], []
+            for offset in range(interval):
+                visit_days = [d for d in range(first_day, days+1) if (d - offset) % interval == 0]
+                sub = g[g.day.isin(visit_days)]
+                flag = sub[sub.label == "pv_decline"]
+                first = flag[flag.episode == DECLINE].groupby("seed").day.min().reindex(meta.index)
+                delays.append((first - meta.crossing_day)[eligible].dropna().mean())
+                flagged.append(int(first[eligible].notna().sum()))
+                false_any.append(flag[flag.episode.isin(CONTROLS)].seed.nunique())
+            out.append(dict(condition=condition, stress=stress, visit_every_days=interval,
+                            declines_reaching_threshold=int(eligible.sum()),
+                            mean_declines_flagged=float(np.mean(flagged)),
+                            mean_delay_days=float(np.mean(delays)),
+                            mean_installations_with_false_flag=float(np.mean(false_any)),
+                            installations=int(len(meta))))
+    return pd.DataFrame(out)

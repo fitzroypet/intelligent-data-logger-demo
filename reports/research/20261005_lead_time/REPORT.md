@@ -31,8 +31,25 @@ episodes: 1,152 comparisons, 0 mismatches. The two `recent_*` conditions never f
 | 3 consecutive | severe | full_cross | 18 | 4.5 | 4 |
 | single flag | clean | full_inverter | 18 | -7.5 | 24 |
 
-A single check at day 60 flags the same declines a median of 30 days after onset; this reference
-depends on the 60-day window and is illustrative.
+A single check at the end of the 60-day record flags the same declines a median of 30 days after
+onset; this depends entirely on the window length and is not a realistic comparison. The table below
+uses fixed visit intervals instead.
+
+## Daily checks versus periodic visits (`visit_interval_summary.csv`)
+
+Full cross-component, clean readings, same 20 declines. A visit at interval *k* uses only every k-th
+daily check, averaged over all k start offsets so that no schedule is favoured. Mean delay is over the
+declines that schedule flagged by day 60, so read it together with the flagged count.
+
+| Visit every | Declines flagged (of 20) | Mean delay after 5% loss (days) | False-flag installations (of 24) |
+|---|---|---|---|
+| 1 day | 19.0 | 4.8 | 0 |
+| 7 days | 18.9 | 7.7 | 0 |
+| 14 days | 17.3 | 10.6 | 0 |
+| 30 days | 14.2 | 15.9 | 0 |
+
+Against a monthly visit, daily checking saves about 11 days of delay and catches about 5 more of the 20
+declines. Sparse schedules also see fewer chances for a false flag, but none occurred in clean data.
 
 Interpretation: with cross-component data and clean readings, daily checks flag a gradual decline a
 median of 4 days after it reaches 5%. Inverter-only checks are "earlier" only because they cannot
@@ -48,6 +65,6 @@ The decline is linear and the simulator is shared with the policy (inverse-model
 faults are flagged by the first check after they occur, so their delay depends only on check
 frequency and is not simulated. Not a field result; no incident-rate claim follows.
 
-Files: `delay_summary.csv`, `rolling_checks.csv.gz` (every daily label), `summary.json` (hashes),
+Files: `delay_summary.csv`, `visit_interval_summary.csv`, `rolling_checks.csv.gz` (every daily label), `summary.json` (hashes),
 `analyze_lead_time.py` (copy of `scripts/analyze_lead_time.py`). Code: `src/research/lead_time.py`.
 Run with `python scripts/analyze_lead_time.py` (about 2 minutes).

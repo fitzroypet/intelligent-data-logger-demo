@@ -7,7 +7,7 @@ sys.path.insert(0, str(ROOT))
 local = ROOT/".venv/Lib/site-packages"
 if local.exists(): sys.path.insert(0, str(local))
 import pandas as pd
-from src.research.lead_time import rolling_checks, summarize, CONTROLS, DECLINE
+from src.research.lead_time import rolling_checks, summarize, periodic_visit_summary, CONTROLS, DECLINE
 
 OUT = ROOT/"reports/research/20261005_lead_time"
 CONDITIONS = ["full_cross", "full_inverter"]       # recent_* never reach the 14-day history requirement
@@ -30,6 +30,8 @@ def main():
     persistent = summarize(checks, days, 3, CONDITIONS)
     table = pd.concat([single, persistent], ignore_index=True)
     table.to_csv(OUT/"delay_summary.csv", index=False)
+    visits = periodic_visit_summary(checks, days)
+    visits.to_csv(OUT/"visit_interval_summary.csv", index=False)
     never = checks[checks.condition.str.startswith("recent")].label.eq("pv_decline").sum()
     summary = {"analysis": "post-hoc rolling daily checks of the unchanged v1 policy; not part of the frozen protocol; "
                            "3-consecutive-flag rule specified after seeing results (exploratory)",
@@ -45,6 +47,7 @@ def main():
     pd.set_option("display.width", 250, "display.max_columns", 30)
     print(f"validation: {len(final)} final-day checks, {mismatches} mismatches")
     print(table.round(2).to_string(index=False))
+    print(visits.round(2).to_string(index=False))
 
 
 if __name__ == "__main__":
